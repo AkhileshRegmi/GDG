@@ -11,10 +11,8 @@ class Task(Base):
     description = Column(String, nullable=True)
     priority = Column(String, nullable=False)
     status = Column(String, nullable=False)
-    deadline = Column(DateTime, nullable=True)
+    deadline = Column(DateTime, nullable=False)
     tags = Column(String, nullable=True)
-
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
-
-    owner_id = Column(Integer, ForeignKey("users.id"))
+    owner_email = Column(String, ForeignKey("users.email"))
