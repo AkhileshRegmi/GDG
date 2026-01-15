@@ -1,11 +1,6 @@
 from database.models.user import User
 from passlib.context import CryptContext
-
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
-
-def get_password_hash(password: str) -> str:
-    return pwd_context.hash(password)
+from backend.core.security import get_password_hash
 
 
 def get_user_by_email(db, email):
@@ -13,9 +8,10 @@ def get_user_by_email(db, email):
 
 
 def create_user(db, user):
-    hashed_password = pwd_context.hash(user.password)
     role = "admin" if db.query(User).count() == 0 else "user"
-    db_user = User(email=user.email, hashed_password=hashed_password, role=role)
+    db_user = User(
+        email=user.email, hashed_password=get_password_hash(user.password), role=role
+    )
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
