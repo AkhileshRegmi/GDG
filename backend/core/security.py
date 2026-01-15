@@ -19,6 +19,11 @@ def create_access_token(subject):
     return encoded_jwt
 
 
+def verify_password(plain_password, hashed_password):
+    is_correct = pwd_context.verify(plain_password, hashed_password)
+    return is_correct
+
+
 def get_password_hash(password):
     hashed_pwd = pwd_context.hash(password)
     return hashed_pwd
