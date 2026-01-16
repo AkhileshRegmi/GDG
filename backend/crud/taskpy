@@ -21,8 +21,6 @@ def create_task(db, task, user_email):
     )
     db.add(db_task)
     db.commit()
-    db.refresh(db_task)
-    return db_task
 
 
 def update_task_in_db(db, task_id, task):
@@ -37,8 +35,6 @@ def update_task_in_db(db, task_id, task):
     db_task.tags = task.tags
     db.add(db_task)
     db.commit()
-    db.refresh(db_task)
-    return db_task
 
 
 def delete_task_from_db(db, task_id):
