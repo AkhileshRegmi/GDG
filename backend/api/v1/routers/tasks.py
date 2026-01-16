@@ -8,9 +8,7 @@ task_service = TaskService()
 
 
 @router.post("/create")
-def create_task(
-    task: TaskCreate, db=Depends(get_db), current_user=Depends(get_current_user)
-):
+def create_task(task, db=Depends(get_db), current_user=Depends(get_current_user)):
     task_service.create_task(db, task, current_user.email)
     return {"message": "Task created successfully"}
 
@@ -35,7 +33,7 @@ def read_tasks(db=Depends(get_db), current_user=Depends(get_current_user)):
     ]
 
 
-@router.get("/fetch/{task_id}", response_model=TaskResponse)
+@router.get("/fetch/{task_id}")
 def read_task(task_id: int, db=Depends(get_db), current_user=Depends(get_current_user)):
     task = task_service.get_task(db, task_id, current_user.email)
     return {
@@ -55,7 +53,7 @@ def read_task(task_id: int, db=Depends(get_db), current_user=Depends(get_current
 @router.put("/update/{task_id}")
 def update_task(
     task_id: int,
-    task: TaskUpdate,
+    task,
     db=Depends(get_db),
     current_user=Depends(get_current_user),
 ):
