@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends
 from database.connection import get_db
 from backend.schemas.task import TaskCreate, TaskResponse, TaskUpdate
-from backend.services.task_service import TaskService
+from backend.services.task import TaskService
 from backend.api.dependency import get_current_user
 
-router = APIRouter(prefix="/tasks", tags=["tasks"])
+router = APIRouter(prefix="/task", tags=["tasks"])
 task_service = TaskService()
 
 

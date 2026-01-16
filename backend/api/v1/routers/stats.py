@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from database.connection import get_db
 from backend.schemas.stats import StatsResponse
-from backend.services.stats_service import StatsService
+from backend.services.stats import StatsService
 from backend.api.dependency import get_current_user
 
 

@@ -1,5 +1,5 @@
 from fastapi import Depends, HTTPException, Request
-from jose import jwt, JWTError
+from jose import jwt
 from backend.core.config import settings
 from database.connection import get_db
 from database.models.user import User

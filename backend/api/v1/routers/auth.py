@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 from database.connection import get_db
-from backend.services.auth_service import AuthService
+from backend.services.auth import AuthService
 from backend.schemas.user import UserCreate, UserResponse, UserLogin
 from backend.schemas.token import Token
 
