@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from backend.api.v1.routers import auth
+from backend.api.v1.routers import auth, tasks
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -13,3 +13,4 @@ app.add_middleware(
 )
 
 app.include_router(auth.router, prefix="/api/v1")
+app.include_router(tasks.router, prefix="/api/v1")
