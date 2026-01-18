@@ -27,3 +27,9 @@ def get_current_user(token=Depends(get_token), db=Depends(get_db)):
         raise HTTPException(status_code=401)
 
     return user
+
+
+def admin_access(user=Depends(get_current_user)):
+    if user.role != "admin":
+        raise HTTPException(status_code=403)
+    return user

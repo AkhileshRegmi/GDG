@@ -13,7 +13,7 @@ def create_access_token(subject):
     expire_time = now + default_delta
     to_encode = {}
     to_encode["exp"] = expire_time
-    to_encode["sub"] = str(subject)
+    to_encode["email"] = str(subject)
     secret = settings.SECRET_KEY
     encoded_jwt = jwt.encode(to_encode, secret)
     return encoded_jwt
