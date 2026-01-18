@@ -10,7 +10,7 @@ class AuthService:
             raise HTTPException(status_code=400, detail="Email already registered")
 
         db_user = user_crud.create_user(db, user)
-        return {"id": db_user.id, "email": db_user.email, "role": db_user.role}
+        return {"email": db_user.email, "role": db_user.role}
 
     def authenticate_user(self, db, email, password):
         user = user_crud.get_user_by_email(db, email)
